@@ -1,0 +1,13 @@
+.category-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-container > * {
+  width: 100%;
+}
+
+.alinear {
+  text-align: center;
+  margin-top: 20px;
+}

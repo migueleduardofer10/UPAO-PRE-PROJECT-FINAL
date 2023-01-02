@@ -1,0 +1,73 @@
+<mat-card>
+  <h2 class="alinear">Registro de Producto</h2>
+  <form [formGroup]="myForm" autocomplete="off">
+    <div class="product-container">
+      <mat-form-field>
+        <input matInput placeholder="Nombre" formControlName="name" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          placeholder="Precio"
+          formControlName="price"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          placeholder="Cantidad"
+          formControlName="account"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let cat of categories" [value]="cat.id">
+            {{ cat.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-label> Foto: </mat-label>
+        <label for="file-upload" class="subir"> Subir archivo </label>
+
+        <input
+          id="file-upload"
+          accept="image/png, image/jpeg"
+          (change)="onFileChanged($event)"
+          type="file"
+          formControlName="picture"
+          class="input-file"
+        />
+        <span> {{ nameImg }}</span>
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="myForm.invalid"
+        type="button"
+        style="margin-left: 10 px"
+        (click)="saveProduct()"
+      >
+        Aceptar
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        routerLink="/admin/category"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

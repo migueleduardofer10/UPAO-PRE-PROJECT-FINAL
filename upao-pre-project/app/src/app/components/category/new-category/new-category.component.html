@@ -1,0 +1,69 @@
+<mat-card>
+  <h2 class="alinear">Registro de Categorías</h2>
+  <form [formGroup]="myForm" autocomplete="off">
+    <div class="category-container">
+      <mat-form-field class="example-container" [style.fontSize.px]="16">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <div
+        *ngIf="
+          myForm.get('name')?.hasError('required') &&
+          myForm.get('name')?.touched
+        "
+        style="margin-top: -20px"
+      >
+        <span class="mda-form-msg"> Este campo es obligatorio </span>
+      </div>
+      <div
+        *ngIf="myForm.get('name')?.hasError('maxlength')"
+        style="margin-top: -20px"
+      >
+        <span class="mda-form-msg">
+          Este campo debe tener como máximo 30 caracteres
+        </span>
+      </div>
+
+      <mat-form-field class="example-container" [style.fontSize.px]="16">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+      <div
+        *ngIf="
+          myForm.get('description')?.hasError('required') &&
+          myForm.get('description')?.touched
+        "
+        style="margin-top: -20px"
+      >
+        <span class="mda-form-msg"> Este campo es obligatorio </span>
+      </div>
+      <div
+        *ngIf="myForm.get('description')?.hasError('maxlength')"
+        style="margin-top: -20px"
+      >
+        <span class="mda-form-msg">
+          Este campo debe tener como máximo 250 caracteres
+        </span>
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="myForm.invalid"
+        type="button"
+        style="margin-left: 10 px"
+        (click)="saveCategory()"
+      >
+        Aceptar
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        routerLink="/admin/category"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>
